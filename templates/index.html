@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JavaScript Bookmarks</title>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+
+                <div class="page-header">
+                    <h1>JavaScript Bookmarks</h1>
+                    <pre>Best pages about JavaScript language</pre>
+                </div>
+
+                <button type="button" data-toggle="modal" class="btn btn-primary" data-target=".modal">
+                    <i class="icon-plus-sign icon-white"></i> Novo bookmark
+                </button>
+
+                <ul class="thumbnails" style="margin-top: 23px;">
+                    {% for bookmark in object_list %}
+                        <li class="span6">
+                            <div class="thumbnail">
+                                <a href="{{ bookmark.url }}" title="{{ bookmark.url }}">
+                                    <img style="width:450px;" src="{{ bookmark.image }}" />
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="pagination">
+                    {% if page > 1 %}<a href="./?page={{ page - 1 }}">Previous</a>{% endif %}
+                    {% if pagination.get_pages() > page %}<a href="./?page={{ page + 1 }}">Next</a>{% endif %}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Modal header</h3>
+            </div>
+            <div class="modal-body">
+                <p>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn">Close</a>
+                <a href="#" class="btn btn-primary">Save changes</a>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='jquery-1.8.0.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    </body>
+</html>
